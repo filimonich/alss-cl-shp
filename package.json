@@ -9,9 +9,26 @@
     "preview": "nuxt preview",
     "postinstall": "nuxt prepare"
   },
+  "prisma": {
+    "seed": "node prisma/seed.js"
+  },
   "dependencies": {
+    "@nuxtjs/supabase": "^1.1.7",
+    "@nuxtjs/tailwindcss": "^6.11.4",
+    "@pinia-plugin-persistedstate/nuxt": "^1.2.0",
+    "@pinia/nuxt": "^0.5.1",
+    "@prisma/client": "^5.11.0",
+    "@stripe/stripe-js": "^3.0.10",
     "nuxt": "^3.10.3",
+    "nuxt-icon": "^0.6.9",
+    "nuxt-lodash": "^2.5.3",
+    "pinia": "^2.1.7",
+    "prisma": "^5.11.0",
+    "stripe": "^14.21.0",
     "vue": "^3.4.21",
     "vue-router": "^4.3.0"
+  },
+  "devDependencies": {
+    "@types/node": "^20.11.28"
   }
 }
