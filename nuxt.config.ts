@@ -1,5 +1,4 @@
 export default defineNuxtConfig({
-  devtools: { enabled: true },
   pages: true,
   modules: [
     "nuxt-icon",
@@ -13,13 +12,13 @@ export default defineNuxtConfig({
     transpile: ["pinia-plugin-persistedstate"],
   },
   runtimeConfig: {
-    publick: {
+    public: {
       stripePk: process.env.STRIPE_PK_KEY,
     },
   },
   app: {
     head: {
-      script: [{ src: "https//js.stripe.com/v3/", defer: true }],
+      script: [{ src: "https://js.stripe.com/v3/", defer: true }],
     },
   },
 });
