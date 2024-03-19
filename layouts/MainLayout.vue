@@ -167,6 +167,9 @@
 </template>
 
 <script setup>
+import { useUserStore } from "~/stores/user";
+const userStore = useUserStore();
+
 let isAccountMenu = ref(false);
 let isCartHover = ref(false);
 let isSearching = ref(false);
