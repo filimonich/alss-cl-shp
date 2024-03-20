@@ -98,6 +98,7 @@ const selectedRadioFunc = (e) => {
     selectedArray.value.push(e);
     return;
   }
+
   selectedArray.value.forEach((item, index) => {
     if (e.id != item.id) {
       selectedArray.value.push(e);
@@ -117,7 +118,7 @@ const goToCheckout = () => {
     return ids.indexOf(item.id) != -1;
   });
 
-  res.forEach((item = userStore.checkout.push(toRaw(item))));
+  res.forEach((item) => userStore.checkout.push(toRaw(item)));
 
   return navigateTo("/checkout");
 };
