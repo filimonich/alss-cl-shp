@@ -97,7 +97,7 @@ onMounted(() => {
 const isInCart = computed(() => {
   let res = false;
   userStore.cart.forEach((prod) => {
-    if (routerKey.params.id == prod.id) {
+    if (route.params.id == prod.id) {
       res = true;
     }
   });
