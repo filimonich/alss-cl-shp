@@ -61,4 +61,7 @@ const oldPriceComputed = computed(() => {
   let res = (product.value.price + product.value.price / 20) / 100;
   return res.toFixed(2);
 });
+
+console.log("product", product);
+console.log("product.$parent", product.$parent);
 </script>

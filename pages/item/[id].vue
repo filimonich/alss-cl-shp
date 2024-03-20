@@ -89,8 +89,8 @@ const route = useRoute();
 
 onMounted(() => {
   watchEffect(() => {
-    currentImage.value = "https://placebeard.it/800x800";
-    images.value[0] = "https://placebeard.it/800x800";
+    currentImage.value = "https://loremflickr.com/800/800/paris,girl/all";
+    images.value[0] = "https://loremflickr.com/800/800/paris,girl/all";
   });
 });
 
@@ -114,7 +114,7 @@ const images = ref([
   "https://loremflickr.com/800/800?lock=21",
   "https://loremflickr.com/800/800?lock=214",
   "https://loremflickr.com/800/800?lock=243",
-  "https://loremflickr.com/800/800?lock=14",
+  "https://loremflickr.com/800/800?lock=414",
 ]);
 
 const addToCart = () => {
