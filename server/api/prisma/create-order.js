@@ -10,9 +10,9 @@ export default defineEventHandler(async (event) => {
       stripeId: body.stripeId,
       name: body.name,
       address: body.address,
+      zipcode: body.zipcode,
       city: body.city,
       country: body.country,
-      zipcode: body.zipCode,
     },
   });
 
@@ -20,7 +20,7 @@ export default defineEventHandler(async (event) => {
     await prisma.orderItem.create({
       data: {
         orderId: order.id,
-        productId: prod.id,
+        productId: Number(prod.id),
       },
     });
   });

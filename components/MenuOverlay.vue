@@ -41,7 +41,7 @@
         </li>
 
         <li
-          v-if="false"
+          v-if="user"
           @click="signOut()"
           class="relative flex items-center justify-between py-2.5 border-b px-3 hover:bg-gray-100 cursor-pointer"
         >
@@ -50,6 +50,7 @@
             <span class="pl-4">Sign out</span>
           </div>
         </li>
+
         <li
           v-else
           @click="signIn()"
@@ -69,8 +70,8 @@
 import { useUserStore } from "~/stores/user";
 const userStore = useUserStore();
 
-// const client = useSupabaseClient();
-// const user = useSupabaseUser();
+const client = useSupabaseClient();
+const user = useSupabaseUser();
 
 const goTo = (url) => {
   userStore.isMenuOverlay = false;

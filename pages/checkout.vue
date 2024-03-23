@@ -5,7 +5,7 @@
         <div class="md:w-[65%]">
           <div class="bg-white rounded-lg p-4">
             <div class="text-xl font-semibold mb-2">Shipping Address</div>
-            <div v-if="false">
+            <div v-if="currentAddress && currentAddress.data">
               <NuxtLink
                 to="/address"
                 class="flex items-center pb-2 text-blue-500 hover:text-red-400"
@@ -19,23 +19,33 @@
                 <ul class="text-xs">
                   <li class="flex items-center gap-2">
                     <div>Contact name:</div>
-                    <div class="font-bold">TEST</div>
+                    <div class="font-bold">
+                      {{ currentAddress.data.name }}
+                    </div>
                   </li>
                   <li class="flex items-center gap-2">
                     <div>Address:</div>
-                    <div class="font-bold">TEST</div>
+                    <div class="font-bold">
+                      {{ currentAddress.data.address }}
+                    </div>
                   </li>
                   <li class="flex items-center gap-2">
                     <div>Zip Code:</div>
-                    <div class="font-bold">TEST</div>
+                    <div class="font-bold">
+                      {{ currentAddress.data.zipcode }}
+                    </div>
                   </li>
                   <li class="flex items-center gap-2">
                     <div>City:</div>
-                    <div class="font-bold">TEST</div>
+                    <div class="font-bold">
+                      {{ currentAddress.data.city }}
+                    </div>
                   </li>
                   <li class="flex items-center gap-2">
                     <div>Country:</div>
-                    <div class="font-bold">TEST</div>
+                    <div class="font-bold">
+                      {{ currentAddress.data.country }}
+                    </div>
                   </li>
                 </ul>
               </div>
@@ -50,7 +60,7 @@
             </NuxtLink>
           </div>
           <div id="Items" class="bg-white rounded-lg p-4 mt-4">
-            <div v-for="product in products">
+            <div v-for="product in userStore.checkout">
               <CheckoutItem :product="product" />
             </div>
           </div>
@@ -109,7 +119,7 @@
 import MainLayout from "~/layouts/MainLayout.vue";
 import { useUserStore } from "~/stores/user";
 const userStore = useUserStore();
-// const user = useSupabaseUser();
+const user = useSupabaseUser();
 const route = useRoute();
 
 let stripe = null;
@@ -120,6 +130,27 @@ let total = ref(0);
 let clientSecret = null;
 let currentAddress = ref(null);
 let isProcessing = ref(false);
+
+onBeforeMount(async () => {
+  if (useStorage.checkout.length < 1) {
+    return navigateTo("shoppingcart");
+  }
+
+  total.value = 0.0;
+
+  if (user.value) {
+    currentAddress.value = await useFetch(
+      `/api/prisma/get-address-by-user/${user.value.id}`
+    );
+    setTimeout(() => (userStore.isLoading = false), 200);
+  }
+});
+
+watchEffect(() => {
+  if (route.fullPath == "/checkout" && !user.value) {
+    return navigateTo("/auth");
+  }
+});
 
 onMounted(() => {
   isProcessing.value = true;
@@ -145,21 +176,4 @@ const pay = async () => {};
 const createOrder = async (stripeId) => {};
 
 const showError = () => {};
-
-const products = [
-  {
-    id: 1,
-    title: "New Title 1",
-    description: "New Description 1",
-    url: "https://loremflickr.com/200/200/paris,girl/all",
-    price: 9999,
-  },
-  {
-    id: 2,
-    title: "New Title 2",
-    description: "New Description 2",
-    url: "https://loremflickr.com/200/200?random=1",
-    price: 8888,
-  },
-];
 </script>
