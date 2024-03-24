@@ -113,11 +113,7 @@
             </div>
 
             <div class="absolute bg-white max-w-[700px] h-auto w-full">
-              <div
-                v-if="items && items.data"
-                v-for="item in items.data"
-                class="p-1"
-              >
+              <div v-if="items && items" v-for="item in items" class="p-1">
                 <NuxtLink
                   :to="`/item/${item.id}`"
                   class="flex items-center justify-between w-full cursor-pointer hover:bg-gray-100"
@@ -187,9 +183,7 @@ let items = ref(null);
 
 const searchByName = useDebounce(async () => {
   isSearching.value = true;
-  items.value = await useFetch(
-    `/api/prisma/search-by-name/${searchItem.value}`
-  );
+  items.value = await $fetch(`/api/prisma/search-by-name/${searchItem.value}`);
   isSearching.value = false;
 }, 100);
 
