@@ -31,6 +31,7 @@
               {{ product.data.description }}
             </p>
           </div>
+
           <div class="flex items-center pt-1.5">
             <span class="h-4 min-w-4 rounded-full p-0.5 bg-[#FFD000] mr-2">
               <Icon
@@ -41,6 +42,7 @@
             </span>
             <p class="text-[#FF5353]">Extra 5% off</p>
           </div>
+
           <div class="flex items-center justify-start my-2">
             <Icon name="ic:baseline-star" color="#FF5353" />
             <Icon name="ic:baseline-star" color="#FF5353" />
@@ -51,7 +53,9 @@
               >5 213 Reviews 1,000+ orders</span
             >
           </div>
+
           <div class="border-b" />
+
           <div class="flex items-center justify-start gap-2 my-2">
             <div class="text-xl font-bold">$ {{ priceComputed }}</div>
             <span
@@ -59,12 +63,15 @@
               >70% off</span
             >
           </div>
+
           <p class="text-[#009A66] text-xs font-semibold pt-1">
             Free 11-day delivery over ￡8.28
           </p>
 
           <p class="text-[#009A66] text-xs font-semibold pt-1">Free Shipping</p>
+
           <div class="py-2" />
+
           <button
             @click="addToCart()"
             :disabled="isInCart"
@@ -83,6 +90,7 @@
 import MainLayout from "~/layouts/MainLayout.vue";
 import { useUserStore } from "~/stores/user";
 const userStore = useUserStore();
+
 const route = useRoute();
 
 let product = ref(null);
@@ -129,6 +137,6 @@ const images = ref([
 ]);
 
 const addToCart = () => {
-  userStore.cart.push.apply(product.value.data);
+  userStore.cart.push(product.value.data);
 };
 </script>
