@@ -13,7 +13,6 @@
                 <Icon name="mdi:plus" size="18" class="mr-2" />
                 Update Address
               </NuxtLink>
-
               <div class="pt-2 border-t">
                 <div class="underline pb-1">Delivery Address</div>
                 <ul class="text-xs">
@@ -122,6 +121,8 @@ const userStore = useUserStore();
 const user = useSupabaseUser();
 const route = useRoute();
 
+definePageMeta({ middleware: "auth" });
+
 let stripe = null;
 let elements = null;
 let card = null;
@@ -203,7 +204,6 @@ const stripeInit = async () => {
       ? event.error.message
       : "";
   });
-
   isProcessing.value = false;
 };
 
